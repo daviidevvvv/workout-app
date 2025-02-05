@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allenamento con Note</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body id="body">
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <nav id="menu" class="hidden">
+            <div class="menu-close" onclick="toggleMenu()">×</div>
+            <ul>
+                <li class="menu-item" onclick="showPage('petto'); toggleMenu()">Petto</li>
+                <li class="menu-item" onclick="showPage('schiena'); toggleMenu()">Schiena</li>
+                <li class="menu-item" onclick="showPage('spalleBraccia'); toggleMenu()">Spalle/Braccia</li>
+                <li class="menu-item" onclick="showPage('note'); toggleMenu()">Note Personali</li>
+                <li class="menu-item" onclick="showPage('calcolo70'); toggleMenu()">Calcolo 70%</li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Il resto del contenuto rimane invariato -->
+    <div id="petto" class="page">
+        <div class="exercises"></div>
+        <div class="controls">
+            <button onclick="addExercise('petto')">+ Aggiungi Esercizio</button>
+            <button onclick="undoRemove()">Annulla Elimina</button>
+        </div>
+        <textarea id="notes-petto" class="personal-notes" placeholder="Scrivi le tue note personali qui..." oninput="saveNotes('petto')"></textarea>
+    </div>
+    <div id="schiena" class="page">
+        <div class="exercises"></div>
+        <div class="controls">
+            <button onclick="addExercise('schiena')">+ Aggiungi Esercizio</button>
+            <button onclick="undoRemove()">Annulla Elimina</button>
+        </div>
+        <textarea id="notes-schiena" class="personal-notes" placeholder="Scrivi le tue note personali qui..." oninput="saveNotes('schiena')"></textarea>
+    </div>
+    <div id="spalleBraccia" class="page">
+        <div class="exercises"></div>
+        <div class="controls">
+            <button onclick="addExercise('spalleBraccia')">+ Aggiungi Esercizio</button>
+            <button onclick="undoRemove()">Annulla Elimina</button>
+        </div>
+        <textarea id="notes-spalleBraccia" class="personal-notes" placeholder="Scrivi le tue note personali qui..." oninput="saveNotes('spalleBraccia')"></textarea>
+    </div>
+    <div id="note" class="page">
+        <textarea id="personalNotes" placeholder="Scrivi le tue note personali qui..." oninput="saveNotes('note')"></textarea>
+    </div>
+    <div id="calcolo70" class="page">
+        <div class="container">
+            <h1>Calcolatore 70%</h1>
+            <label for="peso">Peso Usato:</label>
+            <input type="number" id="peso" placeholder="Inserisci il peso">
+            <label for="ripetizioni">Numero di ripetizioni (5-10):</label>
+            <input type="number" id="ripetizioni" placeholder="Inserisci il numero di ripetizioni">
+            <button onclick="calcola()">Calcola</button>
+            <div id="risultato"></div>
+        </div>
+    </div>
+    <div id="timerWidget" onclick="handleTimerClick()">00:00</div>
+    <script src="scripts.js"></script>
+</body>
+</html>
