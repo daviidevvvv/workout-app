@@ -1,0 +1,484 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Modalità scura */
+    color: #ffffff; /* Modalità scura */
+    overflow-x: hidden; /* Previene lo scorrimento laterale della pagina */
+    -webkit-text-size-adjust: 100%; /* Previene lo zoom su iOS */
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* Rimuove l'highlight sui dispositivi touch */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.menu-icon {
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding-top: 60px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+}
+
+/* Pulsante per chiudere il menu */
+nav .menu-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    padding: 15px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+nav ul li:hover,
+nav ul li.active {
+    background-color: #575757;
+}
+
+nav ul li .mode-toggle {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+nav ul li .mode-icon {
+    width: 24px;
+    height: 24px;
+}
+
+nav.open {
+    transform: translateX(0);
+}
+
+.page {
+    padding: 20px;
+    display: none;
+    margin-top: 60px; /* Adjust for the fixed header */
+    background-color: #1e1e1e; /* Modalità scura */
+}
+
+.page.active {
+    display: block;
+    border: 2px solid #007bff;
+    background-color: #1e1e1e; /* Modalità scura */
+}
+
+.hidden {
+    display: none;
+}
+
+.exercise {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+}
+
+.exercise:nth-child(odd) {
+    background-color: #2e2e2e; /* Modalità scura */
+}
+
+.exercise:nth-child(even) {
+    background-color: #1e1e1e; /* Modalità scura */
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exercise-header input {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1rem; /* Imposta il font a 1rem per evitare zoom */
+}
+
+.exercise-header .sets-select {
+    margin-left: auto;
+}
+
+.exercise-header .timestamp {
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px; /* Modifica la dimensione del testo della data e ora */
+}
+
+.exercise-header .timestamp-btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap; /* Consente la flessibilità */
+}
+
+.move-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px; /* Ridotto da 10px a 5px per risparmiare spazio */
+}
+
+.move-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 2px;
+    border-radius: 3px;
+    font-size: 0.7em; /* Riduce la dimensione del testo del pulsante */
+}
+
+.move-button:hover {
+    background-color: #0056b3;
+}
+
+.date-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.sets-select {
+    margin-right: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.action-buttons button {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.action-buttons .info-btn,
+.action-buttons .remove-btn {
+    padding: 5px;
+    font-size: 1em; /* Ridotto da 1em per risparmiare spazio */
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #218838;
+}
+
+.undo-controls {
+    text-align: center;
+    margin: 20px;
+}
+
+.undo-controls button {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.undo-controls button:hover {
+    background-color: #ff9900;
+}
+
+.info {
+    display: none;
+    padding: 10px;
+    background-color: #333; /* Modalità scura */
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.info textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    resize: vertical;
+    overflow: auto;
+    line-height: 1.5;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #1e1e1e; /* Modalità scura */
+    color: #ffffff; /* Modalità scura */
+}
+
+.info input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #1e1e1e; /* Modalità scura */
+    color: #ffffff; /* Modalità scura */
+}
+
+.set {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+}
+
+.set span {
+    flex-basis: 100%;
+    margin-bottom: 5px;
+}
+
+.set input,
+.set select {
+    margin: 5px 0;
+    padding: 5px;
+    flex: 1;
+    background-color: #1e1e1e; /* Modalità scura */
+    color: #ffffff; /* Modalità scura */
+}
+
+.set input[type="text"] {
+    width: calc(30% - 10px);
+    min-width: 80px;
+    position: relative;
+}
+
+.set input[type="text"]::after {
+    content: attr(data-unit);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaa;
+}
+
+.set select.technique-select {
+    width: calc(40% - 10px);
+}
+
+.set .set-note {
+    margin-left: 10px;
+    padding: 5px;
+    width: calc(100% - 20px); /* Adatta la larghezza per riempire lo spazio disponibile */
+    box-sizing: border-box;
+    background-color: #1e1e1e; /* Modalità scura */
+    color: #ffffff; /* Modalità scura */
+}
+
+.sets {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .exercise-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .exercise-header input {
+        width: calc(100% - 130px);
+    }
+
+    .exercise-controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .move-buttons {
+        flex-direction: row;
+        margin-left: 0;
+    }
+
+    .move-button {
+        margin: 0 5px;
+        font-size: 0.7em; /* Riduce la dimensione del testo del pulsante */
+    }
+
+    .date-time {
+        margin: 0 10px;
+        text-align: center;
+    }
+
+    .set {
+        flex-direction: column;
+    }
+
+    .set input,
+    .set select {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+    }
+
+    .action-buttons button {
+        display: inline-block;
+        margin-right: 5px;
+        font-size: 0.8em; /* Riduce la dimensione del testo del pulsante */
+    }
+
+    .timestamp-btn {
+        margin-left: 5px;
+    }
+}
+
+input, select, textarea {
+    font-size: 16px; /* Mantieni la dimensione del testo a 16px per evitare lo zoom su iOS */
+    line-height: 1.5; /* Previene lo zoom sui dispositivi iOS */
+}
+
+.switch {
+    display: none;
+}
+
+#timerWidget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+}
+
+#timerWidget.running {
+    background-color: #28a745;
+}
+
+#timerWidget.paused {
+    background-color: #ffc107;
+}
+
+#timerWidget.reset {
+    background-color: #dc3545;
+}
+
+#note {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#personalNotes, .personal-notes {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color: #1e1e1e; /* Modalità scura */
+    color: #ffffff; /* Modalità scura */
+}
+
+@media (max-width: 768px) {
+    #personalNotes, .personal-notes {
+        height: 200px;
+    }
+}
+
+/* ------------------------- */
+/* Stili per la sezione Calcolo 70% (Container) */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.container button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #0078D7;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background-color: #00569B;
+}
