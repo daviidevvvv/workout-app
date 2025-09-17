@@ -44,7 +44,8 @@ if (isset($_GET['action'])) {
 
         // Backup current data.json
         if (file_exists('data.json')) {
-            createBackup($input);
+            $currentData = file_get_contents('data.json');
+            createBackup($currentData);
         }
 
         // Save new data
